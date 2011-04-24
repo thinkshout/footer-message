@@ -1,0 +1,3 @@
+name = "Footer Message"
+description = "A configurable footer message, displayed as a block."
+core = "7.x"
