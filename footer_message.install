@@ -7,8 +7,9 @@
  * if so - grab that value and pass to our new footer variable.
  */
 function footer_message_enable() {
-	$site_footer = variable_get('site_footer', FALSE);
-	if ($site_footer) {
-		variable_set('footer_message_msg', array('value' => $site_footer));
+	$old_footer = variable_get('site_footer', FALSE);
+	$new_footer = variable_get('footer_message_msg', FALSE);
+	if (($new_footer == FALSE) && $old_footer) {
+		variable_set('footer_message_msg', array('value' => $old_footer));
 	}
 }
