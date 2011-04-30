@@ -45,11 +45,12 @@ function footer_message_block_view($delta = '') {
 	$block = array();
  
 	switch ($delta) {		
- 		// Display the footer message block.
+ 		// Display the footer message block. Note that we apply the appropriate filter format before outputting HTML.
   	case 'footer_message':
 				$site_footer = variable_get('footer_message_msg', 
 				  array('value' => 'This is default site footer content.'));
-        $block['content'] = $site_footer['value'];
+				$format = isset($site_footer['format']) ? $site_footer['format'] : NULL;
+        $block['content'] = check_markup($site_footer['value'], $format);
 		break;
 	}
 	
