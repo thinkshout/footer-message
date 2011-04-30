@@ -20,7 +20,7 @@ function footer_message_form_system_site_information_settings_alter(&$form, &$fo
 		'#base_type' => 'textarea',
 		'#title' => t('Site Footer message'),
 		'#default_value' => $site_footer['value'],
-		'#format' => NULL, 
+		'#format' => isset($site_footer['format']) ? $site_footer['format'] : NULL, 
 		'#required' => TRUE,
 	);
 }
