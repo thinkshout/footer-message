@@ -1,7 +1,0 @@
-<?
-
-/**
- * @TODO - Add a hook_install() function that looks for a "site_footer" variable from a D6.x site and sets this for the value of footer_message_msg.
- * Need to put a little thought into this, since footer_message_msg is a serialized variable that also stores a filter format.
- * Need to get default format when setting this variable.
- */

@@ -1,22 +1,25 @@
 <?php
 /**
+* @file
  * This module provides a configurable footer message as a block.
  */
 
 /**
  * Implements hook_form_FORM_ID_alter()
  */
-function footer_message_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {
-	
+function footer_message_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {	
 	// Add a footer text area to the "Site Information" admin page.
-	// Note the use of Drupal 7's new "text format" property, described here: http://drupal.org/update/modules/6/7#text_format.
-	// Note that both the value of this 'footer_message_msg' textarea and its filter format are stored as a serial value in the variables table.
-	$site_footer = variable_get('footer_message_msg', array());
+	// Note the use of Drupal 7's new "text format" property, described 
+	// http://drupal.org/update/modules/6/7#text_format. Note that both the 
+	// value of this 'footer_message_msg' textarea and its filter format are 
+	// stored as a serial value in the variables table.
+	$site_footer = variable_get('footer_message_msg', 
+	  array('value' => 'This is default site footer content.'));
 	$form['footer_message_msg'] = array(
 		'#type' => 'text_format',
 		'#base_type' => 'textarea',
 		'#title' => t('Site Footer message'),
-		'#default_value' => (!empty($site_footer['value'])) ? $site_footer['value']: 'This is default site footer content.',
+		'#default_value' => $site_footer['value'],
 		'#format' => NULL, 
 		'#required' => TRUE,
 	);
@@ -25,8 +28,7 @@ function footer_message_form_system_site_information_settings_alter(&$form, &$fo
 /**
  * Implements hook_block_info().
  */
-function footer_message_block_info() {
-	
+function footer_message_block_info() {	
 	// Add a block containing the site footer message.
   $blocks['footer_message'] = array(
     'info' => t('Footer Message'), 
@@ -37,22 +39,19 @@ function footer_message_block_info() {
 }
 
 /**
- * Implements hook_block_view($delta = '').
+ * Implements hook_block_view().
  */
 function footer_message_block_view($delta = '') {
-	
 	$block = array();
  
-	switch ($delta) {
-		
+	switch ($delta) {		
  		// Display the footer message block.
   	case 'footer_message':
-				$site_footer = variable_get('footer_message_msg', array());
-        $block['subject'] = t('');
-        $block['content'] = (!empty($site_footer['value'])) ? $site_footer['value']: 'This is default site footer content.';
+				$site_footer = variable_get('footer_message_msg', 
+				  array('value' => 'This is default site footer content.'));
+        $block['content'] = $site_footer['value'];
 		break;
 	}
 	
   return $block;
-
 }
