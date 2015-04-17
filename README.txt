@@ -2,7 +2,7 @@
 
 Description:
 * This module provides a site footer message, editable on the site-information form and displayed as a block, as well as presented as a theme variable.
-* The module replicates the "site footer" feature from Drupal 6.x. for Drupal 7.x sites.
+* The module replicates the "site footer" feature from Drupal 6.x. for Drupal 7.x and 8.x sites.
 * Note: A migration path for Drupal 6.x sites is underway. Needs some cleanup.
 
 Installation & Usage:
