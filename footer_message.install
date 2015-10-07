@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * Implements hook_enable().
+ * Provides an upgrade path from Drupal 6.x sites to Drupal 7.x,
+ * checking to see if the site_footer variable has been set for a D6 site,
+ * if so - grab that value and pass to our new footer variable.
+ */
+function footer_message_enable() {
+	// @FIXME
+// // @FIXME
+// // This looks like another module's variable. You'll need to rewrite this call
+// // to ensure that it uses the correct configuration object.
+// $old_footer = variable_get('site_footer', FALSE);
+
+	$new_footer = \Drupal::config('footer_message.settings')->get('footer_message_msg');
+	if (($new_footer == FALSE) && $old_footer) {
+		\Drupal::configFactory()->getEditable('footer_message.settings')->set('footer_message_msg', array('value' => $old_footer))->save();
+	}
+}

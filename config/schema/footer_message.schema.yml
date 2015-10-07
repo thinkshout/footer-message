@@ -1,0 +1,6 @@
+footer_message.settings:
+  type: mapping
+  label: Settings
+  mapping:
+    footer_message_msg:
+      type: boolean
